@@ -6,10 +6,16 @@ isFullTime=1
 isPartTime=0
 empWagePerHr=20
 totalSalary=0
-totalWorkingDays=20
+totalWorkingDay=20
+totalWorkingHr=100
 
-for (( day=1;day<=$totalWorkingDays;day++ ))
+empWorkingHrs=0
+empWorkingDays=0
+
+
+while [[ $empWorkingHrs -lt $totalWorkingHr && $empWorkingDays -lt $totalWorkingDay ]]
 do
+	(( empWorkingDays++ ))
 	randomCheck=$((RANDOM%3))
 
 	case $randomCheck in 
@@ -23,9 +29,10 @@ do
 	  		empHrs=0
 	  		;;
 	esac
-	empSalary=$(( $empWagePerHr*$empHrs ))
-	totalSalary=$(( $totalSalary+$empSalary))
+	empWorkingHrs=$(( $empWorkingHrs + $empHrs ))
+	
 
 done
-echo "Employee Wage is: " $empSalary
+totalSalary=$(( $empWorkingHrs*$empWagePerHr ))
+
 echo "Total salary of employee: "$totalSalary

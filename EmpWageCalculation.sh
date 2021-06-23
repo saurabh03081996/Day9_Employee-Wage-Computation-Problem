@@ -1,17 +1,22 @@
 #! /bin/bash -x
 
 echo "welcome to EmpWageComputation Problem"
-isPresent=1
-isAbsent=0
-empWagePerHr=20
-empFullDayHr=8
-randomCheck=$((RANDOM%2))
 
-if [ $isPresent -eq $randomCheck ]
+isFullTime=1
+isPartTime=0
+empWagePerHr=20
+randomCheck=$((RANDOM%3))
+
+if [ $isFullTime -eq $randomCheck ]
 then
-	echo "Employee is Present"
-	empDailyWage=$(($empWagePerHr*$empFullDayHr))
-	echo "Daily Wage Of Employee is: " $empDailyWage
+	empHrs=8
+
+elif [ $isPartTime -eq $randomCheck ]
+then
+	empHrs=4
 else
-	echo "Employee is Absent"
+	empHrs=0
+	echo "Employee is Absent...."
 fi
+empSalary=$(( $empWagePerHr*$empHrs ))
+echo "Employee Wage is: " $empSalary

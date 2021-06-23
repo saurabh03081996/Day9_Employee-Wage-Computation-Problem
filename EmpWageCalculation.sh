@@ -1,4 +1,4 @@
-#! /bin/bash -x
+#! /bin/bash -x 
 
 isPartTime=1;
 isFullTime=2;
@@ -9,6 +9,7 @@ numWorkingDays=20;
 totalEmpHr=0;
 totalWorkingDays=0;
 
+declare -A dailyEmpWage
 function getWorkingHours() {
 	case $1 in
                 $isFullTime)
@@ -36,4 +37,5 @@ do
 done
 totalSalary=$(($totalWorkingHours*$empRatePerHr));
 echo ${dailyEmpWage[@]}
+echo ${!dailyEmpWage[@]}
 echo $totalSalary
